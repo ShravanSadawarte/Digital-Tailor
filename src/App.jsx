@@ -1,6 +1,6 @@
 import "./App.css";
 
-function title(){
+function Title(){
   return (
     <h1>Hello World!</h1>
   )
@@ -9,7 +9,7 @@ function title(){
 function App() {
 
   return (
-    <title/>
+    <Title />
   )
 }
 
