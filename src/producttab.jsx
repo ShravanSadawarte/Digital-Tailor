@@ -1,0 +1,6 @@
+function ProductTab() {
+    return{
+        <product/ >;
+
+    }
+}
