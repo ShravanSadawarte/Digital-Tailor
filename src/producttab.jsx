@@ -1,8 +1,9 @@
 function ProductTab() {
-    return{
-        <product/ >;
-
-    }
+    return(
+        <>
+        <Product/>
+        </>
+    )
 }
 
 export default ProductTab;

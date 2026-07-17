@@ -1,8 +1,9 @@
 import "./App.css";
+import ProductTab from "./productTab";
 
 function app(){
   return (
-    <h1>Hello World!</h1>
+    <ProductTab/>
   )
 }
 
