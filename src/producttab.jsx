@@ -4,3 +4,5 @@ function ProductTab() {
 
     }
 }
+
+export default ProductTab;

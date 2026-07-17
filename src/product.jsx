@@ -5,3 +5,5 @@ function product(){
         <p>Price: $19.99</p>;
     }
 }
+
+export default product;
