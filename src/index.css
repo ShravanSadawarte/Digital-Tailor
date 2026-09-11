@@ -1,14 +1,56 @@
 :root {
-  --bg: #ffffff;
-  --bg-soft: #f8f7f5;
-  --text: #2b2b2e;
-  --muted: #6b6b76;
-  --border: #e8e5df;
-  --accent: #1a1a1a;
-  --gold: #c9a24b;
-  --gold-soft: #fdf6e3;
+  /* ——— Digital Tailor brand palette (official) ——— */
+  --color-sky-blue: #A8D8EA;
+  --color-soft-purple: #AA96DA;
+  --color-soft-pink: #FCBAD3;
+  --color-pale-yellow: #FFFFD2;
+
+  /* ——— Palette roles (derived tints / borders / text-safe shades) ——— */
+  --sky-tint: #EAF5FB;
+  --sky-border: #BFDFF0;
+  --sky-deep: #2E6B87;          /* text-safe on light sky tints */
+  --purple-tint: #F0EBFB;
+  --purple-border: #CFC2EE;
+  --purple-deep: #5F4AA8;       /* text-safe on white; hover/active */
+  --purple-hover: #9B84D3;
+  --purple-ink: #2A2342;        /* dark text on purple/pastel fills */
+  --pink-tint: #FDEEF4;
+  --pink-border: #F6C3D8;
+  --pink-deep: #A34A74;         /* text-safe on light pink tints */
+  --yellow-tint: #FFFFE9;
+  --yellow-border: #EDE9B8;
+  --yellow-deep: #6B5E12;       /* text-safe on pale yellow tints */
+
+  /* ——— Subtle brand gradients (use sparingly) ——— */
+  --gradient-ai: linear-gradient(135deg, #A8D8EA 0%, #AA96DA 100%);
+  --gradient-fashion: linear-gradient(135deg, #AA96DA 0%, #FCBAD3 100%);
+  --gradient-warm: linear-gradient(135deg, #FCBAD3 0%, #FFFFD2 100%);
+
+  /* ——— Neutral foundation (readability first) ——— */
+  --bg: #FFFFFF;
+  --bg-soft: #FBFAFE;
+  --text: #232329;
+  --muted: #5E6270;
+  --border: #E8E5F0;
   --radius: 14px;
   --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* ——— Legacy aliases (kept so existing classes keep working) ——— */
+  --accent: var(--color-soft-purple);
+  --gold: var(--color-soft-purple);
+  --gold-soft: var(--purple-tint);
+
+  /* ——— Semantic states (kept distinct from brand pastels) ——— */
+  --success: #1A7F37;
+  --success-bg: #E7F6EB;
+  --danger: #B42318;
+  --danger-bg: #FDECEA;
+  --warning: #9A6700;
+  --warning-bg: #FFF4D6;
+
+  --shadow-sm: 0 1px 2px rgba(42, 35, 66, 0.06);
+  --shadow-md: 0 12px 32px rgba(90, 74, 168, 0.12);
+  --shadow-lg: 0 20px 50px rgba(42, 35, 66, 0.12);
 
   color-scheme: light;
   font: 16px/1.6 var(--sans);
@@ -33,7 +75,7 @@ h1, h2, h3 {
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.02em;
-  color: #111;
+  color: var(--text);
 }
 
 p { margin: 0; color: var(--muted); }
@@ -43,3 +85,15 @@ a { color: inherit; }
 button { font: inherit; }
 
 img { max-width: 100%; display: block; }
+
+::selection {
+  background: var(--color-soft-pink);
+  color: var(--purple-ink);
+}
+
+/* Visible keyboard focus — never rely on color alone */
+:focus-visible {
+  outline: 3px solid var(--color-sky-blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
