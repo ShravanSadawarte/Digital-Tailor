@@ -1,46 +1,35 @@
 :root {
   /* ——— Digital Tailor brand palette (official) ——— */
-  --color-sky-blue: #A8D8EA;
-  --color-soft-purple: #AA96DA;
-  --color-soft-pink: #FCBAD3;
-  --color-pale-yellow: #FFFFD2;
+  --navy: #462C7D;          /* deep purple — headings, dark sections, primary text */
+  --royal: #831C91;         /* vivid purple — primary CTAs, brand accents */
+  --peri: #D552A3;          /* pink — secondary accents, highlights */
+  --ice: #FF70BF;           /* hot pink — vivid accents, used sparingly */
 
-  /* ——— Palette roles (derived tints / borders / text-safe shades) ——— */
-  --sky-tint: #EAF5FB;
-  --sky-border: #BFDFF0;
-  --sky-deep: #2E6B87;          /* text-safe on light sky tints */
-  --purple-tint: #F0EBFB;
-  --purple-border: #CFC2EE;
-  --purple-deep: #5F4AA8;       /* text-safe on white; hover/active */
-  --purple-hover: #9B84D3;
-  --purple-ink: #2A2342;        /* dark text on purple/pastel fills */
-  --pink-tint: #FDEEF4;
-  --pink-border: #F6C3D8;
-  --pink-deep: #A34A74;         /* text-safe on light pink tints */
-  --yellow-tint: #FFFFE9;
-  --yellow-border: #EDE9B8;
-  --yellow-deep: #6B5E12;       /* text-safe on pale yellow tints */
+  /* ——— Derived roles ——— */
+  --royal-deep: #5F1470;        /* CTA hover / active */
+  --peri-tint: #F8E9F2;         /* light pink wash */
+  --ice-tint: #FDEFF6;          /* lighter pink wash */
+  --ice-border: #F0B4D4;
+  --peri-border: #E394C2;
 
-  /* ——— Subtle brand gradients (use sparingly) ——— */
-  --gradient-ai: linear-gradient(135deg, #A8D8EA 0%, #AA96DA 100%);
-  --gradient-fashion: linear-gradient(135deg, #AA96DA 0%, #FCBAD3 100%);
-  --gradient-warm: linear-gradient(135deg, #FCBAD3 0%, #FFFFD2 100%);
-
-  /* ——— Neutral foundation (readability first) ——— */
-  --bg: #FFFFFF;
-  --bg-soft: #FBFAFE;
-  --text: #232329;
-  --muted: #5E6270;
-  --border: #E8E5F0;
-  --radius: 14px;
+  /* ——— Neutral foundation ——— */
+  --bg: #FBF8FC;
+  --surface: #FFFFFF;
+  --text: #462C7D;
+  --body: #4C4459;
+  --muted: #726A86;
+  --border: #EADFF0;
+  --radius: 16px;
   --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: Fraunces, Georgia, "Times New Roman", serif;
 
-  /* ——— Legacy aliases (kept so existing classes keep working) ——— */
-  --accent: var(--color-soft-purple);
-  --gold: var(--color-soft-purple);
-  --gold-soft: var(--purple-tint);
+  /* ——— Fluent motion tokens ——— */
+  --ease-out: cubic-bezier(0.22, 0.9, 0.28, 1);
+  --dur-fast: 0.15s;
+  --dur-med: 0.35s;
+  --dur-slow: 0.7s;
 
-  /* ——— Semantic states (kept distinct from brand pastels) ——— */
+  /* ——— Semantic states (kept distinct from brand palette) ——— */
   --success: #1A7F37;
   --success-bg: #E7F6EB;
   --danger: #B42318;
@@ -48,52 +37,51 @@
   --warning: #9A6700;
   --warning-bg: #FFF4D6;
 
-  --shadow-sm: 0 1px 2px rgba(42, 35, 66, 0.06);
-  --shadow-md: 0 12px 32px rgba(90, 74, 168, 0.12);
-  --shadow-lg: 0 20px 50px rgba(42, 35, 66, 0.12);
+  --shadow-sm: 0 1px 2px rgba(70, 44, 125, 0.08);
+  --shadow-md: 0 14px 34px rgba(70, 44, 125, 0.13);
+  --shadow-lg: 0 24px 60px rgba(70, 44, 125, 0.18);
 
   color-scheme: light;
   font: 16px/1.6 var(--sans);
-  color: var(--text);
+  color: var(--body);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--text);
+  color: var(--body);
 }
 
-#root {
-  min-height: 100svh;
-}
+#root { min-height: 100svh; }
 
 h1, h2, h3 {
-  line-height: 1.15;
+  line-height: 1.12;
   margin: 0;
   letter-spacing: -0.02em;
   color: var(--text);
 }
 
-p { margin: 0; color: var(--muted); }
+p { margin: 0; }
 
 a { color: inherit; }
-
 button { font: inherit; }
-
 img { max-width: 100%; display: block; }
 
-::selection {
-  background: var(--color-soft-pink);
-  color: var(--purple-ink);
+::selection { background: var(--ice-border); color: var(--navy); }
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--royal);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
-/* Visible keyboard focus — never rely on color alone */
-:focus-visible {
-  outline: 3px solid var(--color-sky-blue);
-  outline-offset: 2px;
-  border-radius: 6px;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

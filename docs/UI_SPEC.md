@@ -19,18 +19,19 @@
 
 ```css
 :root {
-  --bg: #fffaf7;            /* warm neutral, adjustable */
+  --navy: #462C7D;          /* deep purple — headings, dark sections, primary text */
+  --royal: #831C91;         /* vivid purple — primary CTAs, brand accents */
+  --peri: #D552A3;          /* pink — secondary accents */
+  --ice: #FF70BF;           /* hot pink — vivid accents, used sparingly */
+  --bg: #FBF8FC;            /* soft neutral background */
   --surface: #ffffff;
-  --ink: #2b2220;           /* body text */
-  --muted: #8a7d78;
-  --border: #f0e4dc;
-  --brand: #9d3b5e;         /* maroon-rose, adjustable */
-  --brand-ink: #ffffff;
-  --accent: #c9a24b;        /* gold, sparing use */
+  --text: #462C7D;
+  --body: #4C4459;
+  --muted: #726A86;
+  --border: #EADFF0;
   --success: #1a7f37; --danger: #b42318; --warn: #9a6700;
-  --radius: 14px; --radius-sm: 9px;
-  --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px; --space-5: 40px;
-  --font: Inter, system-ui, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  --radius: 16px;
+  --font: Inter, system-ui, "Segoe UI", Roboto, sans-serif;
 }
 ```
 

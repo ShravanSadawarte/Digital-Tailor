@@ -3,6 +3,18 @@
 All meaningful project changes should be documented here.
 Format follows Keep a Changelog (Unreleased → Added/Changed/Fixed/Removed/Security).
 
+## Unreleased
+
+### Added
+
+- Hero look-book card plays a real showcase video (`public/hero-bg.mp4`, royalty-free Pexels clip of a model presenting an embroidered traditional suit, matching the embroidery-suit reference) with autoplay-muted-loop, reduced-motion pause, and gradient fallback if the file is missing.
+- Hero recomposed as one controlled editorial stack: offset accent + 4/5 portrait share a grid cell, prompt card anchors to the lower-right in normal flow, two frame-pinned badges; mobile stacks naturally with no overlap.
+
+### Changed
+
+- Landing page redesigned from scratch as a fashion-tech editorial experience (navbar + mobile menu, hero with styled composition, 4-step journey, prompt preview card with copy, 8 style cards, personalization chips, Why/About sections, navy finale CTA, footer with Privacy/Terms dialogs).
+- Brand palette updated to deep purple `#462C7D` / vivid purple `#831C91` / pink `#D552A3` / hot pink `#FF70BF` (replacing the navy/royal/periwinkle/ice set); `docs/UI_SPEC.md` design tokens synced, all text pairs re-verified WCAG AA. No AI/image APIs added; prompt card is a static demo.
+
 ## [0.2.0] - 2026-09-11 — Prompt-generation direction
 
 ### Added
