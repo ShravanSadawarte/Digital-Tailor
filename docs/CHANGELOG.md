@@ -7,8 +7,10 @@ Format follows Keep a Changelog (Unreleased → Added/Changed/Fixed/Removed/Secu
 
 ### Added
 
+- Premium interactive experience: cinematic staggered hero entrance, pointer parallax on the hero composition, interactive How-It-Works journey (steps drive a swapping visual stage), progressive prompt typing reveal, shortlistable style cards, scroll progress bar, tailor stitch motif on the prompt card.
 - Hero look-book card plays a real showcase video (`public/hero-bg.mp4`, royalty-free Pexels clip of a model presenting an embroidered traditional suit, matching the embroidery-suit reference) with autoplay-muted-loop, reduced-motion pause, and gradient fallback if the file is missing.
 - Hero recomposed as one controlled editorial stack: offset accent + 4/5 portrait share a grid cell, prompt card anchors to the lower-right in normal flow, two frame-pinned badges; mobile stacks naturally with no overlap.
+- Nagpur identity across the site: "Made for Nagpur" hero kicker and lead, localized About (lanes of Nagpur, haldi-kunku / Gudi Padwa / Ganeshotsav, areas-served chips), "Made with ♥ in Nagpur" footer, Nagpur page title and meta.
 
 ### Changed
 

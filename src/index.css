@@ -28,6 +28,11 @@
   --dur-fast: 0.15s;
   --dur-med: 0.35s;
   --dur-slow: 0.7s;
+  /* Motion language: micro 100–200ms · small 200–350ms · medium 350–600ms · large 600–900ms */
+  --dur-micro: 0.15s;
+  --dur-small: 0.3s;
+  --dur-medium: 0.5s;
+  --dur-large: 0.8s;
 
   /* ——— Semantic states (kept distinct from brand palette) ——— */
   --success: #1A7F37;
