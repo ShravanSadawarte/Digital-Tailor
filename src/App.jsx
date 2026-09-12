@@ -1,6 +1,7 @@
-// App.jsx — kept empty on purpose.
-// It only loads the LandingPage component so you can
-// focus on learning React inside landingpage.jsx.
+// App.jsx — application shell.
+// Global styles live here; pages are composed from ./components
+// so every section stays reusable across the whole website.
+import "./App.css";
 import LandingPage from "./landingpage.jsx";
 
 function App() {
