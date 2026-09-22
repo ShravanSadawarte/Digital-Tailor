@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { NAV_LINKS } from "../data/content";
 import Brand from "./Brand";
 import Modal from "./Modal";
@@ -7,9 +8,9 @@ const DEFAULT_EXPLORE = NAV_LINKS;
 
 // Site footer with Privacy / Terms dialogs (no router required).
 export default function Footer({
-  tagline = "Personalized fashion styling, powered by AI prompts. Made with ♥ in Nagpur, Maharashtra.",
+  tagline = "Your neighborhood tailor shop, now online. Kurtis, suits & gowns stitched to fit — made with ♥ in Nagpur, Maharashtra.",
   exploreLinks = DEFAULT_EXPLORE,
-  signoff = "Prompts, not photos. Hero video via Pexels.",
+  signoff = "Measurements once · Direct UPI · Festival offers",
 }) {
   const [modal, setModal] = useState(null);
   return (
@@ -25,7 +26,7 @@ export default function Footer({
             <ul className="dt-footer-links">
               {exploreLinks.map(([label, href]) => (
                 <li key={href}>
-                  <a href={href}>{label}</a>
+                  <Link to={href}>{label}</Link>
                 </li>
               ))}
             </ul>
@@ -50,24 +51,26 @@ export default function Footer({
       {modal === "privacy" && (
         <Modal title="Privacy" onClose={() => setModal(null)}>
           <p>
-            Digital Tailor creates styling prompts from the preferences you enter. We never
-            ask for your photo on this site.
+            Digital Tailor stores your account, measurements and orders so the tailor can
+            stitch your garments. Reference and payment screenshots are used only for your
+            order.
           </p>
           <p>
-            When you use your prompt with an external AI service such as ChatGPT, that
-            service’s own privacy policy applies to anything you upload there.
+            The optional AI Studio creates styling prompts from preferences you enter — we
+            never ask for your photo on this site. Anything you upload to an external AI
+            service is covered by that service's own privacy policy.
           </p>
         </Modal>
       )}
       {modal === "terms" && (
         <Modal title="Terms" onClose={() => setModal(null)}>
           <p>
-            Prompts are styling suggestions for inspiration. Visualizations produced elsewhere
-            may differ from the final tailored garment.
+            Orders are stitched to your measurements. Payments go directly to the shop via
+            UPI — share the UTR and screenshot so the tailor can confirm quickly.
           </p>
           <p>
-            Final measurements, fabric and stitching are confirmed with the tailor before any
-            order is made.
+            Final measurements, fabric and finishing are confirmed with the tailor before
+            delivery. Festival timelines are shared at order time.
           </p>
         </Modal>
       )}

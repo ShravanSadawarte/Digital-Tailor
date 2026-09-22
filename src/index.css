@@ -46,6 +46,16 @@
   --shadow-md: 0 14px 34px rgba(70, 44, 125, 0.13);
   --shadow-lg: 0 24px 60px rgba(70, 44, 125, 0.18);
 
+  /* Legacy aliases (older component styles reference these names) */
+  --color-soft-purple: #D552A3;
+  --color-sky-blue: #D552A3;
+  --purple-tint: #F8E9F2;
+  --purple-border: #E394C2;
+  --purple-deep: #5F1470;
+  --purple-ink: #3A1B52;
+  --sky-tint: #FDEFF6;
+  --sky-border: #F0B4D4;
+
   color-scheme: light;
   font: 16px/1.6 var(--sans);
   color: var(--body);

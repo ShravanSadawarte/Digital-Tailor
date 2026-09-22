@@ -1,18 +1,18 @@
 import Button from "./Button";
 import Reveal from "./Reveal";
 
-// Closing conversion panel.
+// Closing conversion panel — tailor-first for local customers.
 export default function Finale({
   id = "finale",
   title = (
     <>
-      Your next outfit <em>starts with an idea.</em>
+      Your festive outfit <em>starts here.</em>
     </>
   ),
-  text = "Turn that idea into a personalized AI styling prompt and see where your style can take you.",
-  primary = { label: "Try Digital Tailor", href: "#preview" },
-  secondary = { label: "How It Works", href: "#how" },
-  ticks = ["✓ Free preview", "✓ No photo upload", "✓ Tailor-crafted finish"],
+  text = "Shop father's collection or personalize your own dress — measurements once, UPI direct, stitched in Nagpur.",
+  primary = { label: "Shop the collection", to: "/#shop" },
+  secondary = { label: "Personalize a dress", to: "/customize" },
+  ticks = ["✓ Perfect-fit measurements", "✓ Direct UPI · no extra charges", "✓ Diwali & festival offers"],
 }) {
   return (
     <section className="dt-section" id={id}>
@@ -22,10 +22,10 @@ export default function Finale({
             <h2>{title}</h2>
             <p>{text}</p>
             <div className="dt-finale-actions">
-              <Button variant="light" href={primary.href}>
+              <Button variant="light" to={primary.to} href={primary.href}>
                 {primary.label}
               </Button>
-              <Button variant="ghost-light" href={secondary.href}>
+              <Button variant="ghost-light" to={secondary.to} href={secondary.href}>
                 {secondary.label}
               </Button>
             </div>

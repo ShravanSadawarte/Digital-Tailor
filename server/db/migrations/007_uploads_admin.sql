@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS uploaded_references (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  owner_id BIGINT UNSIGNED NOT NULL,
+  design_id BIGINT UNSIGNED NULL,
+  order_id BIGINT UNSIGNED NULL,
+  file_path VARCHAR(500) NOT NULL,
+  mime VARCHAR(50) NULL,
+  size_bytes INT NULL,
+  original_name VARCHAR(255) NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_refs_owner FOREIGN KEY (owner_id) REFERENCES users (id) ON DELETE CASCADE,
+  CONSTRAINT fk_refs_design FOREIGN KEY (design_id) REFERENCES customer_designs (id) ON DELETE CASCADE,
+  CONSTRAINT fk_refs_order FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS admin_actions (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  admin_id BIGINT UNSIGNED NOT NULL,
+  action VARCHAR(100) NOT NULL,
+  entity VARCHAR(50) NULL,
+  entity_id BIGINT UNSIGNED NULL,
+  detail JSON NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_aactions_admin FOREIGN KEY (admin_id) REFERENCES users (id) ON DELETE CASCADE,
+  INDEX idx_aactions_admin (admin_id, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

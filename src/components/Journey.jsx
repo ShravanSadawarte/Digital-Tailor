@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { STEPS } from "../data/content";
+import { HOME_STEPS } from "../data/content";
 import Button from "./Button";
 import SectionHeading from "./SectionHeading";
 
@@ -51,14 +51,14 @@ function JourneyArt({ index }) {
 // Interactive journey: step tabs drive a swapping visual stage.
 export default function Journey({
   id = "how",
-  eyebrow = "How it works",
+  eyebrow = "How ordering works",
   title = (
     <>
-      Your style, <em>one prompt away.</em>
+      From idea to outfit, <em>in 4 steps.</em>
     </>
   ),
-  sub = "Tap a step — watch the story unfold.",
-  steps = STEPS,
+  sub = "Order online or walk in — the tailor handles the rest.",
+  steps = HOME_STEPS,
 }) {
   const [active, setActive] = useState(0);
   const step = steps[active];
@@ -110,8 +110,8 @@ export default function Journey({
                     Next step →
                   </Button>
                 ) : (
-                  <Button variant="primary" size="sm" className="dt-jnext" href="#preview">
-                    Try the demo
+                  <Button variant="primary" size="sm" className="dt-jnext" to="/#shop">
+                    Shop the collection →
                   </Button>
                 )}
               </div>

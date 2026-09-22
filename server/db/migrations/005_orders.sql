@@ -1,0 +1,54 @@
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id BIGINT UNSIGNED NOT NULL,
+  measurement_profile_id BIGINT UNSIGNED NULL,
+  status VARCHAR(30) NOT NULL DEFAULT 'REQUESTED',
+  subtotal DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  discount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  notes TEXT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT chk_order_status CHECK (status IN ('REQUESTED','CONFIRMED','MEASUREMENT_PENDING','MEASUREMENT_CONFIRMED','FABRIC_PENDING','CUTTING','STITCHING','TRIAL_READY','ALTERATION','READY','DELIVERED','CANCELLED')),
+  CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES users (id) ON DELETE RESTRICT,
+  CONSTRAINT fk_orders_profile FOREIGN KEY (measurement_profile_id) REFERENCES measurement_profiles (id) ON DELETE SET NULL,
+  INDEX idx_orders_customer (customer_id, status),
+  INDEX idx_orders_status (status, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS order_items (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT UNSIGNED NOT NULL,
+  design_id BIGINT UNSIGNED NULL,
+  garment_id BIGINT UNSIGNED NOT NULL,
+  qty INT NOT NULL DEFAULT 1,
+  unit_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  options_snapshot JSON NULL,
+  CONSTRAINT chk_item_qty CHECK (qty >= 1),
+  CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
+  CONSTRAINT fk_items_design FOREIGN KEY (design_id) REFERENCES customer_designs (id) ON DELETE RESTRICT,
+  CONSTRAINT fk_items_garment FOREIGN KEY (garment_id) REFERENCES garments (id) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS order_measurements (
+  order_id BIGINT UNSIGNED NOT NULL,
+  field_key VARCHAR(40) NOT NULL,
+  value_cm DECIMAL(5,1) NOT NULL,
+  source VARCHAR(20) NOT NULL DEFAULT 'customer',
+  PRIMARY KEY (order_id, field_key),
+  CONSTRAINT chk_omsource CHECK (source IN ('customer','tailor')),
+  CONSTRAINT fk_om_order FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS order_status_history (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  order_id BIGINT UNSIGNED NOT NULL,
+  from_status VARCHAR(30) NULL,
+  to_status VARCHAR(30) NOT NULL,
+  changed_by BIGINT UNSIGNED NULL,
+  note VARCHAR(500) NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_osh_order FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
+  CONSTRAINT fk_osh_user FOREIGN KEY (changed_by) REFERENCES users (id) ON DELETE SET NULL,
+  INDEX idx_osh_order (order_id, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

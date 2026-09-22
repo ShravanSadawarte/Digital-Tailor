@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../auth/useAuth.js";
+import { useCart } from "../cart/CartContext.jsx";
 import { NAV_LINKS } from "../data/content";
 import Brand from "./Brand";
 import Button from "./Button";
 
-// Sticky site navbar: scroll-spy links, progress bar, mobile menu.
+// Sticky site navbar: route-aware links, progress bar, mobile menu.
 export default function Navbar({ links = NAV_LINKS }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("#top");
   const [progress, setProgress] = useState(0);
+  const { pathname } = useLocation();
+  const { user } = useAuth();
+  const { count: bagCount } = useCart();
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
@@ -21,20 +26,14 @@ export default function Navbar({ links = NAV_LINKS }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
-        });
-      },
-      { rootMargin: "-38% 0px -55% 0px" }
-    );
-    links.forEach(([, href]) => {
-      const s = document.querySelector(href);
-      if (s) io.observe(s);
-    });
-    return () => io.disconnect();
-  }, [links]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- close menu on navigation
+    setOpen(false);
+  }, [pathname]);
+  const isActive = (href) => {
+    const [path] = href.split("#");
+    if (!path || path === "/") return pathname === "/";
+    return pathname.startsWith(path);
+  };
   return (
     <header className={`dt-nav${scrolled ? " scrolled" : ""}`}>
       <span
@@ -46,19 +45,27 @@ export default function Navbar({ links = NAV_LINKS }) {
         <Brand />
         <nav className="dt-links" aria-label="Primary">
           {links.map(([label, href]) => (
-            <a
+            <Link
               key={href}
-              href={href}
-              className={active === href ? "active" : ""}
-              aria-current={active === href ? "true" : undefined}
+              to={href}
+              className={isActive(href) ? "active" : ""}
+              aria-current={isActive(href) ? "page" : undefined}
             >
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
-        <Button variant="primary" size="sm" href="#preview" className="dt-nav-cta">
-          Try Digital Tailor
-        </Button>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          <Link to="/cart" aria-label={`Shopping bag${bagCount ? `, ${bagCount} items` : ""}`} style={{ textDecoration: "none", fontWeight: 800, padding: "8px 10px" }}>
+            🛍{bagCount ? ` ${bagCount}` : ""}
+          </Link>
+          <Button variant="secondary" size="sm" to={user ? "/profile" : "/login"} className="dt-nav-cta">
+            {user ? user.name?.split(" ")[0] || "Profile" : "Log in"}
+          </Button>
+          <Button variant="primary" size="sm" to="/#shop" className="dt-nav-cta">
+            Shop now
+          </Button>
+        </div>
         <button
           className="dt-menu-btn"
           aria-expanded={open}
@@ -71,13 +78,19 @@ export default function Navbar({ links = NAV_LINKS }) {
       </div>
       <nav id="dt-mobile-menu" className={`dt-mobile-menu${open ? " open" : ""}`} aria-label="Mobile">
         {links.map(([label, href]) => (
-          <a key={href} href={href} onClick={() => setOpen(false)}>
+          <Link key={href} to={href} onClick={() => setOpen(false)}>
             {label}
-          </a>
+          </Link>
         ))}
-        <a href="#finale" onClick={() => setOpen(false)}>
-          Try Digital Tailor →
-        </a>
+        <Link to="/cart" onClick={() => setOpen(false)}>
+          🛍 Bag{bagCount ? ` (${bagCount})` : ""} →
+        </Link>
+        <Link to={user ? "/profile" : "/login"} onClick={() => setOpen(false)}>
+          {user ? "Profile →" : "Log in →"}
+        </Link>
+        <Link to="/customize" onClick={() => setOpen(false)}>
+          Personalize ✦ →
+        </Link>
       </nav>
     </header>
   );

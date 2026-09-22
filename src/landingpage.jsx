@@ -1,7 +1,6 @@
-// landingpage.jsx — Digital Tailor landing page.
-// Thin composition only: every section below is a reusable component
-// from ./components (also usable on future pages). Client-side only —
-// no AI API calls, no image generation.
+// Home page — home IS the shop for local customers.
+// Order: hero → occasions → festival offers → FULL shop → personalize
+// → how ordering works → why the shop → about → visit → finale.
 import About from "./components/About";
 import FeatureGrid from "./components/FeatureGrid";
 import Finale from "./components/Finale";
@@ -9,13 +8,14 @@ import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Journey from "./components/Journey";
 import Navbar from "./components/Navbar";
-import Personalization from "./components/Personalization";
-import PromptSection from "./components/PromptSection";
-import StyleExplorer from "./components/StyleExplorer";
+import OffersBar from "./components/OffersBar";
+import PersonalizeCTA from "./components/PersonalizeCTA";
+import ShopBrowser from "./components/ShopBrowser";
 import Ticker from "./components/Ticker";
-import { WHY_ITEMS } from "./data/content";
+import VisitShop from "./components/VisitShop";
+import { HOME_STEPS, HOME_WHY } from "./data/content";
 
-function LandingPage() {
+function HomePage() {
   return (
     <div className="dt">
       <a className="dt-skip" href="#main">
@@ -25,21 +25,27 @@ function LandingPage() {
       <main id="main">
         <Hero />
         <Ticker />
-        <Journey />
-        <PromptSection />
-        <StyleExplorer />
-        <Personalization />
+        <OffersBar />
+        <ShopBrowser />
+        <PersonalizeCTA />
+        <Journey
+          eyebrow="How ordering works"
+          title={<>From idea to outfit, <em>in 4 steps.</em></>}
+          sub="Order online or walk in — the tailor handles the rest."
+          steps={HOME_STEPS}
+        />
         <FeatureGrid
           id="why"
-          eyebrow="Why Digital Tailor"
+          eyebrow="Why our shop"
           title={
             <>
-              Why <em>Digital Tailor?</em>
+              Why <em>neighbors trust us.</em>
             </>
           }
-          items={WHY_ITEMS}
+          items={HOME_WHY}
         />
         <About />
+        <VisitShop />
         <Finale />
       </main>
       <Footer />
@@ -47,4 +53,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default HomePage;

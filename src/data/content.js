@@ -8,10 +8,12 @@ export const SAMPLE_PROMPT =
   "photorealistic, natural fabric drape.";
 
 export const NAV_LINKS = [
-  ["Home", "#top"],
-  ["How It Works", "#how"],
-  ["Styles", "#styles"],
-  ["About", "#about"],
+  ["Home", "/"],
+  ["Shop", "/#shop"],
+  ["Personalize", "/customize"],
+  ["About", "/about"],
+  ["Contact", "/contact"],
+  ["Studio", "/studio"],
 ];
 
 export const TICKER_ITEMS = [
@@ -36,6 +38,33 @@ export const STEPS = [
     no: "STEP 04", title: "Visualize Your Look",
     text: "See how your selected style could look on you.",
   },
+];
+
+// Home page: how ordering from the tailor works (local-customer flow).
+export const HOME_STEPS = [
+  {
+    no: "STEP 01", title: "Pick a design",
+    text: "Shop father's collection or personalize — cloth, neck front & back, sleeves, plus your own reference photo.",
+  },
+  {
+    no: "STEP 02", title: "Give measurements",
+    text: "Add them once after login (or skip and add later in your bag). Reused for every future order.",
+  },
+  {
+    no: "STEP 03", title: "Pay directly via UPI",
+    text: "Scan the QR, pay in any UPI app, share the UTR. No gateway, no extra charges.",
+  },
+  {
+    no: "STEP 04", title: "Stitched & delivered",
+    text: "The tailor stitches, confirms trial, and delivers — with festival offers like Diwali applied automatically.",
+  },
+];
+
+export const HOME_WHY = [
+  { icon: "📏", title: "Perfect fit", text: "Your measurements saved once, reused for every kurti, suit and gown." },
+  { icon: "🧵", title: "Father's craft", text: "Years of Nagpur tailoring — fabric advice, neat finishing, honest pricing." },
+  { icon: "📱", title: "Direct UPI", text: "Pay the shop directly by QR. No middlemen, no hidden charges." },
+  { icon: "🪔", title: "Festival ready", text: "Diwali, Eid, wedding offers on the homepage — order early, wear on time." },
 ];
 
 export const STYLES = [

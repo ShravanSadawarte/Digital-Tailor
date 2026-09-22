@@ -87,26 +87,26 @@ function HeroVisual({ videoSrc, tag, title, points, price, badges }) {
         ))}
       </div>
       <div className="dt-prompt-float dt-float">
-        <span className="dt-tag">Your AI prompt</span>
-        <p>“Create a realistic visualization… keep facial identity consistent… embroidered festive suit…”</p>
-        <span className="dt-prompt-copy">⧉ Copy Prompt</span>
+        <span className="dt-tag">How ordering works</span>
+        <p>“Pick a design → add measurements → pay via UPI → tailor stitches & delivers.”</p>
+        <span className="dt-prompt-copy">🛍 Shop the collection</span>
       </div>
     </div>
   );
 }
 
-// Editorial hero: staggered copy left, fashion composition right.
+// Home hero for local customers: the tailor shop first, AI studio second.
 export default function Hero({
-  kicker = "Made for Nagpur · AI-assisted styling",
+  kicker = "Nagpur's own tailor shop · now online",
   title = (
     <>
-      See Your Style <em>Before You Wear It.</em>
+      Stitching that <em>fits you perfectly.</em>
     </>
   ),
-  lead = "Discover personalized outfit ideas and turn them into ready-to-use AI prompts. Add your photo in ChatGPT and visualize your next look before you step out. Made for every woman in Nagpur — from college corridors and office days to haldi-kunku mornings and family weddings.",
-  primary = { label: "Try Digital Tailor", href: "#preview" },
-  secondary = { label: "How It Works", href: "#how" },
-  micro = "Personalized styling. Ready-to-use AI prompts. Your photo stays in your hands.",
+  lead = "Shop father's kurtis, suits and gowns — or personalize your own dress with cloth, neck and sleeve designs. Add measurements once, pay directly via UPI, and get festive-ready stitching delivered in Nagpur.",
+  primary = { label: "Shop the collection", to: "/#shop" },
+  secondary = { label: "Personalize a dress", to: "/customize" },
+  micro = "Save measurements once · Direct UPI, no extra charges · Diwali & festival offers live.",
   visual = {},
 }) {
   return (
@@ -122,10 +122,10 @@ export default function Hero({
           <h1>{title}</h1>
           <p className="dt-lead">{lead}</p>
           <div className="dt-hero-actions">
-            <Button variant="primary" href={primary.href}>
+            <Button variant="primary" to={primary.to} href={primary.href}>
               {primary.label}
             </Button>
-            <Button variant="secondary" href={secondary.href}>
+            <Button variant="secondary" to={secondary.to} href={secondary.href}>
               {secondary.label}
             </Button>
           </div>
@@ -140,11 +140,11 @@ export default function Hero({
         </div>
         <HeroVisual
           videoSrc={`${import.meta.env.BASE_URL}hero-bg.mp4`}
-          tag="THE EMBROIDERY EDIT · Nº 04"
-          title="White embroidered suit, live"
-          points={["Chikankari-style embroidery", "Lace-detailed finish", "Relaxed straight fit"]}
-          price="Tailored from ₹999"
-          badges={["⧉ Embroidery edit", "✦ Festive ready"]}
+          tag="FATHER'S FESTIVE EDIT · STITCHED IN NAGPUR"
+          title="Kurtis & suits, made to measure"
+          points={["Perfect-fit measurements", "Cloth, neck & sleeve of your choice", "Direct UPI · no extra charges"]}
+          price="Stitching from ₹999"
+          badges={["✦ Made in Nagpur", "🪔 Diwali ready"]}
           {...visual}
         />
       </div>
